@@ -153,7 +153,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8acf331500ce5e046b9ff97b87249c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 568450223}
   trackDest: {fileID: 2106395035}
   prefab: {fileID: 5006207827059162357, guid: e4e275dac5cf968498768ca3a22db8e6, type: 3}
 --- !u!65 &6413033
