@@ -6,11 +6,16 @@ TagManager:
   tags:
   - Obstacle
   - TrackSpawner
+  - right
+  - Cars
+  - Fast
+  - Box
+  - Bike
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Fast
   - Water
   - UI
   - 
