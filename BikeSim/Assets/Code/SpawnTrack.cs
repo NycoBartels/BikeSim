@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SpawnTrack : MonoBehaviour
 {
+    [SerializeField]
     private PlayerController player;
     [SerializeField]
     private GameObject trackDest;

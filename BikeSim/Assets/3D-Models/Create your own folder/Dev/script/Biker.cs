@@ -1,0 +1,12 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Biker : MonoBehaviour
+{
+
+    void Update()
+    {
+        transform.position = transform.position + new Vector3(0f, 0f, -0.15f);
+    }
+}
