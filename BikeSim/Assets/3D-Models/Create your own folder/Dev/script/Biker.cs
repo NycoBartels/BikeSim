@@ -7,6 +7,6 @@ public class Biker : MonoBehaviour
 
     void Update()
     {
-        transform.position = transform.position + new Vector3(0f, 0f, -0.3f);
+        transform.position = transform.position + new Vector3(0f, 0f, -0.15f);
     }
 }
