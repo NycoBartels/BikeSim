@@ -6,7 +6,11 @@ public class movement : MonoBehaviour
 {
     public CharacterController Control;
     public float speed = 20f;
+    private Rigidbody rb;
 
+    private void Start() {
+        rb = GetComponent<Rigidbody>();
+    }
     void Update()
     {
         float x = Input.GetAxis("Horizontal");
