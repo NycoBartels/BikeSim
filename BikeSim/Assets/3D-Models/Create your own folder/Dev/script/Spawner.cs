@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public GameObject Biker;
-    public GameObject Spawnpoint;
-    void OnTriggerEnter(Collider boop)
+    public GameObject player;
+    public GameObject Bike;
+    public GameObject Spawnbike;
+
+    public void OnTriggerEnter(Collider boop)
     {
         if (boop.gameObject.tag == "Player")
         {
-            Instantiate(Biker,Spawnpoint.transform.position,Quaternion.identity);
+            Instantiate(Bike,Spawnbike.transform.position,Quaternion.identity);
         }
     }
 }

@@ -3,20 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Obstacle
-  - TrackSpawner
-  - right
-  - Cars
-  - Fast
-  - Box
-  - Bike
-  - Hurtbox
+  tags: []
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Fast
+  - 
   - Water
   - UI
   - 
