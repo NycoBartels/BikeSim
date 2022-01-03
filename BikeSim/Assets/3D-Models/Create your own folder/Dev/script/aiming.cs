@@ -6,7 +6,7 @@ public class aiming : MonoBehaviour
 {
 
     public float mousesens = 100f;
-    public Transform player;
+    public Transform Player;
     float Rotatex = 0f;
     void Start()
     {
@@ -21,7 +21,7 @@ public class aiming : MonoBehaviour
         Rotatex = Mathf.Clamp(Rotatex, -90f, 90f);
 
         transform.localRotation = Quaternion.Euler(Rotatex, 0f, 0f);
-        player.Rotate(Vector3.up * mouseX);
+        Player.Rotate(Vector3.up * mouseX);
 
     }
 }
