@@ -8,6 +8,7 @@ public class aiming : MonoBehaviour
     public float mousesens = 100f;
     public Transform player;
     float Rotatex = 0f;
+    float Rotatey = 0f;
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -19,9 +20,9 @@ public class aiming : MonoBehaviour
 
         Rotatex -= mouseY;
         Rotatex = Mathf.Clamp(Rotatex, -90f, 90f);
-
-        transform.localRotation = Quaternion.Euler(Rotatex, 0f, 0f);
-        player.Rotate(Vector3.up * mouseX);
+        Rotatey -= -mouseX;
+        Rotatey = Mathf.Clamp(-90f, Rotatey, 90f);
+        transform.localRotation = Quaternion.Euler(Rotatex, Rotatey, 0f);
 
     }
 }

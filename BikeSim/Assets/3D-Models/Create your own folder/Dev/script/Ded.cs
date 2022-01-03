@@ -5,6 +5,8 @@ using UnityEngine;
 public class Ded : MonoBehaviour
 {
     public GameObject speed;
+    public GameObject lvlloc2;
+    public GameObject player;
     void Start()
     {
         speed = GameObject.FindGameObjectWithTag("Fast");
@@ -30,6 +32,11 @@ public class Ded : MonoBehaviour
         if (Kill.gameObject.tag == "Fast")
         {
             speed.SetActive(false);
+        }
+        if (Kill.gameObject.tag == "2ndlvl")
+        {
+            Destroy(gameObject);
+            Instantiate(player,lvlloc2.transform.position,Quaternion.identity);
         }
     }
 }
