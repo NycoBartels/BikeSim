@@ -11,7 +11,6 @@ TagManager:
   - Fast
   - Box
   - Bike
-  - Hurtbox
   layers:
   - Default
   - TransparentFX
