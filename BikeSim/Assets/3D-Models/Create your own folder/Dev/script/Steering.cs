@@ -4,23 +4,21 @@ using UnityEngine;
 
 public class Steering : MonoBehaviour
 {
-
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
+float speed = 60;
+Vector3 left = new Vector3(0,-40,0);
+Vector3 right = new Vector3(0,40,0);
+Vector3 idle = new Vector3(0,0,0);
     void Update()
     {
         if (Input.GetKey(KeyCode.A))
         {
-            this.transform.rotation = Quaternion.Euler(0,-40,0);
-        } else
+            this.transform.rotation = Quaternion.RotateTowards(transform.rotation,Quaternion.Euler(left),Time.deltaTime * speed);
+        } else                                          
         if (Input.GetKey(KeyCode.D))
         {
-            this.transform.rotation = Quaternion.Euler(0,40,0);
+            this.transform.rotation = Quaternion.RotateTowards(transform.rotation,Quaternion.Euler(right),Time.deltaTime * speed);
         } else {
-            this.transform.rotation = Quaternion.Euler(0,0,0);
+            this.transform.rotation = Quaternion.RotateTowards(transform.rotation,Quaternion.Euler(idle),Time.deltaTime * speed);
         }
     }
 }

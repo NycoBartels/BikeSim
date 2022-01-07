@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Bikemovement : MonoBehaviour
 {
-    public float speed = 5f;
+    public Transform Steering;
+    public float speed = 0.3f;
     Rigidbody rb;
     void Start()
     {
@@ -13,7 +14,17 @@ public class Bikemovement : MonoBehaviour
     void Update()
     {
         float MovZ = Input.GetAxisRaw("Vertical");
+        if (rb.velocity.z >= 50 || rb.velocity.z <= -20) 
+        {
 
-        rb.velocity = new Vector3(0,rb.velocity.y,MovZ) * speed;
+        } else {
+            rb.velocity = rb.velocity + new Vector3(0,0,MovZ) * speed;
+        }
+        if (rb.velocity.z <= 0)
+        {
+            rb.velocity = rb.velocity + new Vector3(0,0,0.03f);
+        } else {
+            rb.velocity = rb.velocity - new Vector3(0,0,0.03f);
+        }
     }
 }
