@@ -4,54 +4,42 @@ using UnityEngine;
 
 public class Cartrigger : MonoBehaviour
 {
-    public GameObject speed;
-    bool Enter = false;
-    float KillCar = 99999999f;
-    float left = -0.7f;
-    float right = 0.7f;
-    float move;
-    void Start()
+    [SerializeField]
+    private bool DestroyCar = false, TriggerEnter = false, SpeedCar = false;
+    private float MoveDirection;
+    private void OnTriggerEnter(Collider Triggered)
     {
-        speed = GameObject.FindGameObjectWithTag("Fast");
-    }
-    public void OnTriggerEnter(Collider boom)
-    {
-        if (boom.gameObject.tag == "Fast")
+        if (Triggered.gameObject.tag == "Player")
         {
-            speed.SetActive(false);
-        }
-        if (boom.gameObject.tag == "Player")
-        {
-            if (this.gameObject.tag == "right")
+            TriggerEnter = true;
+            DestroyCar = true;
+            if (this.gameObject.tag == "right") // checks if the car has the 'right' tag to change the move direction 
             {
-                move = right;
+                MoveDirection = 0.04f;
+            }   else // if the tag isnt right then it has to be left
+            {
+                MoveDirection = -0.04f;
             }
-            else
+            if (SpeedCar == true) // bool for what cars we want to go fast
             {
-                move = left;
+                MoveDirection *= 3;
             }
-            if (speed.activeSelf)
-            {
-                move *= 3;
-                speed.SetActive(false);
-            } else 
-            {
-                speed.SetActive(true);
-            }
-            Enter = true;
-            KillCar = Time.time + 5f;
         }
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        if (Enter == true)
+        MoveCar();
+    }
+    private void MoveCar()
+    {
+        if (TriggerEnter == true)
         {
-            transform.position = transform.position + new Vector3(move, 0f, 0f);
+            transform.position = transform.position + new Vector3(MoveDirection, 0f, 0f); // simple transform to move car
         }
-        if (KillCar < Time.time)
+        if (DestroyCar == true)
         {
-            Destroy(gameObject);
+            Destroy(gameObject,5); // Destroys the car after 5 secons
         }
     }
 }
