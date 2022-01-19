@@ -29,7 +29,6 @@ public class HumanStartWalking : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.tag == "Player") {
             isWalking = true;
-            Debug.Log("Player detected");
         }
     }
 

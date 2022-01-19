@@ -11,6 +11,7 @@ TagManager:
   - Fast
   - Box
   - Bike
+  - Human
   layers:
   - Default
   - TransparentFX
