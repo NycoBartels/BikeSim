@@ -5,24 +5,37 @@ using UnityEngine;
 public class Cartrigger : MonoBehaviour
 {
     [SerializeField]
-    private bool DestroyCar = false, TriggerEnter = false, SpeedCar = false;
+    private bool SpeedCar = false, moveRight = false, looping = false, oncoming = false;
+    private bool TriggerEnter = false, startedLoop = false;
     private float MoveDirection;
+    private float horizontalSpeed;
+    [SerializeField] private float timer;
+    private Vector3 startPos;
+
+    private void Start() {
+        startPos = transform.position;
+        Debug.Log(startPos);
+    }
     private void OnTriggerEnter(Collider Triggered)
     {
         if (Triggered.gameObject.tag == "Player")
         {
             TriggerEnter = true;
-            DestroyCar = true;
-            if (this.gameObject.tag == "right") // checks if the car has the 'right' tag to change the move direction 
+            if (moveRight == true) // checks if the car has 'right dir' to change the move direction 
             {
                 MoveDirection = 0.04f;
             }   else // if the tag isnt right then it has to be left
             {
                 MoveDirection = -0.04f;
             }
+            if (oncoming == true) {
+                horizontalSpeed = -.04f;
+                MoveDirection = 0f;
+            }
             if (SpeedCar == true) // bool for what cars we want to go fast
             {
                 MoveDirection *= 3;
+                horizontalSpeed *= 3;
             }
         }
     }
@@ -35,11 +48,21 @@ public class Cartrigger : MonoBehaviour
     {
         if (TriggerEnter == true)
         {
-            transform.position = transform.position + new Vector3(MoveDirection, 0f, 0f); // simple transform to move car
+            transform.position = transform.position + new Vector3(MoveDirection, 0f, horizontalSpeed); // simple transform to move car
         }
-        if (DestroyCar == true)
-        {
-            Destroy(gameObject,5); // Destroys the car after 5 secons
+        if (looping == true && startedLoop == false) {
+            Invoke("ResetCarPosition", timer);
+            
+            startedLoop = true;
+        } 
+        if (looping != true) {
+            Destroy(gameObject, timer); // Destroys the car after 5 secons
         }
+
+    }
+
+    private void ResetCarPosition() {
+        transform.position = startPos;
+        startedLoop = false;
     }
 }
