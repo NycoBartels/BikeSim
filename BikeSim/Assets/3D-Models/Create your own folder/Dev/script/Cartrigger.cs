@@ -14,7 +14,6 @@ public class Cartrigger : MonoBehaviour
 
     private void Start() {
         startPos = transform.position;
-        Debug.Log(startPos);
     }
     private void OnTriggerEnter(Collider Triggered)
     {
