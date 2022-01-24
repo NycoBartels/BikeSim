@@ -6,13 +6,12 @@ public class BikeController : MonoBehaviour
 {
     public void GetInput()
     {
-        //HorizontalInput = Input.GetAxis("Horizontal");
-        //VerticalInput = Input.GetAxis("Vertical");
+        //INPUT verticalinput for now  
     }
 
     private void Steer()
     {
-        SteeringAngle = MaxSteerAngle * ((SteeringWheel.rotation.z * 100) / -20);
+        SteeringAngle = MaxSteerAngle * ((SteeringWheel.rotation.z * 100) / 20);
         Front1W.steerAngle = SteeringAngle;
         Front2W.steerAngle = SteeringAngle;
     }
@@ -28,7 +27,6 @@ public class BikeController : MonoBehaviour
     private void UpdateWheelPoses()
     {
         UpdateWheelPose(Front1W,Front1T);
-        //UpdateWheelPose(Front1W,Steering);
     }
     
     private void UpdateWheelPose(WheelCollider collider, Transform transform)
@@ -47,6 +45,7 @@ public class BikeController : MonoBehaviour
         Steer();
         Accelerate();
         UpdateWheelPoses();
+        VerticalInput = 0.5f;
     }
     private float HorizontalInput;
     private float VerticalInput;
@@ -55,6 +54,7 @@ public class BikeController : MonoBehaviour
     public WheelCollider Back1W,Back2W;
     public Transform Front1T,Front2T;
     public Transform Back1T,Back2T;
+    Vector3 m_EulerAngleVelocity;
     public float MaxSteerAngle = 30;
     public float Force = 50;
     public Transform SteeringWheel;
