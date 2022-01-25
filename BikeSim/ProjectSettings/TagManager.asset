@@ -12,6 +12,7 @@ TagManager:
   - Box
   - Bike
   - Human
+  - SoundCar
   layers:
   - Default
   - TransparentFX
