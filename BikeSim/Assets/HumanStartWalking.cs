@@ -8,7 +8,7 @@ public class HumanStartWalking : MonoBehaviour
     [SerializeField] private float movespeed = 10f;
     [SerializeField] private CharacterController player;
     private Rigidbody rb;
-    private bool isWalking = false;
+    [SerializeField] private bool isWalking = false, GoRight = false;
 
     void Start()
     {
@@ -23,7 +23,11 @@ public class HumanStartWalking : MonoBehaviour
     }
 
     private void Walk() {
-        rb.velocity = new Vector3(-movespeed, 0f, 0f);
+        if (GoRight){
+            rb.velocity = new Vector3(movespeed, 0f, 0f);
+        } else {
+            rb.velocity = new Vector3(-movespeed, 0f, 0f);
+        }
     }
 
     private void OnTriggerEnter(Collider other) {
