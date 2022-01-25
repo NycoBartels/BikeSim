@@ -49,14 +49,10 @@ public class Cartrigger : MonoBehaviour
         {
             transform.position = transform.position + new Vector3(MoveDirection, 0f, horizontalSpeed); // simple transform to move car
         }
-        if (looping == true && startedLoop == false) {
+        if (startedLoop == false) {
             Invoke("ResetCarPosition", timer);
-            
             startedLoop = true;
         } 
-        if (looping != true) {
-            Destroy(gameObject, timer); // Destroys the car after 5 secons
-        }
 
     }
 
