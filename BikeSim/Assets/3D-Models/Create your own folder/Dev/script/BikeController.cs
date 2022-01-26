@@ -39,7 +39,7 @@ public class BikeController : MonoBehaviour
             Front2W.motorTorque = VerticalInput * tempForce;
         }
         Vector3 vel = rb.velocity;
-        if (vel.magnitude > 50) 
+        if (vel.magnitude > 55) 
         {
             Force = -40;
         } else {
