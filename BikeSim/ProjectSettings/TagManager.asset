@@ -13,6 +13,9 @@ TagManager:
   - Bike
   - Human
   - SoundCar
+  - Hurtbox
+  - Wall
+  - FinishLine
   layers:
   - Default
   - TransparentFX

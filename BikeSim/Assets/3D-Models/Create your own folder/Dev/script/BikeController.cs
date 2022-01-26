@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BikeController : MonoBehaviour
 {
+    private Stats stats;
+    private FlashScreen flashscreen;
     private float HorizontalInput;
     private float VerticalInput;
     private float SteeringAngle;
@@ -20,6 +23,8 @@ public class BikeController : MonoBehaviour
 
     private void Start()
     {
+        stats = GetComponent<Stats>();
+        flashscreen = GetComponent<FlashScreen>();
         tempForce = Force * 4;
     }
     public void GetInput()
@@ -37,29 +42,42 @@ public class BikeController : MonoBehaviour
         // SteeringWheel.rotation = Quaternion.Euler(81.84f,0,SteeringAngle);
     }
 
-    private void Accelerate()
-    {
-        if (VerticalInput > 0)
-        {
-            
+    private void Accelerate() {
+        Vector3 vel = rb.velocity;
+        if (VerticalInput > 0) {
             Back1W.motorTorque = VerticalInput * Force;
             Back2W.motorTorque = VerticalInput * Force;
             Front1W.motorTorque = VerticalInput * Force;
-            Front2W.motorTorque = VerticalInput * Force; 
-        } else {
-            Back1W.motorTorque = VerticalInput * tempForce;
-            Back2W.motorTorque = VerticalInput * tempForce;
-            Front1W.motorTorque = VerticalInput * tempForce;
-            Front2W.motorTorque = VerticalInput * tempForce;
+            Front2W.motorTorque = VerticalInput * Force;
         }
-        Vector3 vel = rb.velocity;
-        if (vel.magnitude > 100) 
-        {
+        else {
+            if (vel.magnitude < 10) {
+                Back1W.motorTorque = VerticalInput * tempForce * 0.2f;
+                Back2W.motorTorque = VerticalInput * tempForce * 0.2f;
+                Front1W.motorTorque = VerticalInput * tempForce * 0.2f;
+                Front2W.motorTorque = VerticalInput * tempForce * 0.2f;
+            }
+            else if (vel.magnitude < 40) {
+                Back1W.motorTorque = VerticalInput * tempForce * 4;
+                Back2W.motorTorque = VerticalInput * tempForce * 4;
+                Front1W.motorTorque = VerticalInput * tempForce * 4;
+                Front2W.motorTorque = VerticalInput * tempForce * 4;
+            }
+            else {
+                Back1W.motorTorque = VerticalInput * tempForce;
+                Back2W.motorTorque = VerticalInput * tempForce;
+                Front1W.motorTorque = VerticalInput * tempForce;
+                Front2W.motorTorque = VerticalInput * tempForce;
+            }
+        }
+
+        if (vel.magnitude > 55) {
             Force = -accel;
-        } else {
+        }
+        else {
             Force = accel;
         }
-        
+
     }
 
     private void UpdateWheelPoses()
@@ -80,8 +98,14 @@ public class BikeController : MonoBehaviour
     {
        if ((this.transform.eulerAngles.z > 60 && this.transform.eulerAngles.z < 250 )||(this.transform.eulerAngles.z < -60 && this.transform.eulerAngles.z > -250 )) 
        {
-           Time.timeScale = 0;
-       }
+            flashscreen.gotHurt();
+            stats.LostBalance();
+            stats.SetPlayerPrefs();
+            SceneManager.LoadScene("Hidde1");
+           
+           
+        }
+        
     }
 
     private void FixedUpdate()

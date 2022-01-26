@@ -6,13 +6,13 @@ public class HumanStartWalking : MonoBehaviour
 {
 
     [SerializeField] private float movespeed = 10f;
-    [SerializeField] private CharacterController player;
+    //[SerializeField] private CharacterController player;
     private Rigidbody rb;
     [SerializeField] private bool isWalking = false, GoRight = false;
 
     void Start()
     {
-        player = GetComponent<CharacterController>();
+        //player = GetComponent<CharacterController>();
         rb = GetComponent<Rigidbody>();
     }
 

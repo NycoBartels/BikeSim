@@ -23,9 +23,12 @@ public class Window_Graph : MonoBehaviour
         dashTemplateX = graphContainer.Find("dashTemplateX").GetComponent<RectTransform>();
         dashTemplateY = graphContainer.Find("dashTemplateY").GetComponent<RectTransform>();
 
-        List<int> valueList = new List<int>() { 5, 98, 56, 45, 30, 22, 17, 15, 13, 17, 25, 37, 40, 36, 33 };
+        List<int> valueList = new List<int>() { 70, 12, 18, 68, 43, 21, 62, 36 };
+
+        List<int> scoreList = 
 
         ShowGraph(valueList);
+        ShowGraph(scoreList);
     }
 
     private GameObject CreateCircle(Vector2 anchoredPosition) {

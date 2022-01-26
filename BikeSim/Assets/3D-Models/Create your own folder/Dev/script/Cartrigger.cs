@@ -4,21 +4,23 @@ using UnityEngine;
 
 public class Cartrigger : MonoBehaviour
 {
-    [SerializeField]
-    private bool SpeedCar = false, moveRight = false, oncoming = false;
+    [SerializeField] private bool SpeedCar = false, moveRight = false, oncoming = false;
     private bool TriggerEnter = false, startedLoop = false;
     private float MoveDirection;
     private float horizontalSpeed;
     [SerializeField] private float timer;
     private Vector3 startPos;
+    [SerializeField] private BoxCollider coll;
 
     private void Start() {
         startPos = transform.position;
+        coll = GetComponent<BoxCollider>();
     }
     private void OnTriggerEnter(Collider Triggered)
     {
         if (Triggered.gameObject.tag == "Player")
         {
+            coll.enabled = false;
             TriggerEnter = true;
             if (moveRight == true) // checks if the car has 'right dir' to change the move direction 
             {
