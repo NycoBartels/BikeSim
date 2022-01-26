@@ -5,7 +5,7 @@ using UnityEngine;
 public class Cartrigger : MonoBehaviour
 {
     [SerializeField]
-    private bool SpeedCar = false, moveRight = false, looping = false, oncoming = false;
+    private bool SpeedCar = false, moveRight = false, oncoming = false;
     private bool TriggerEnter = false, startedLoop = false;
     private float MoveDirection;
     private float horizontalSpeed;
