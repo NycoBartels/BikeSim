@@ -4,6 +4,20 @@ using UnityEngine;
 
 public class BikeController : MonoBehaviour
 {
+    private float HorizontalInput;
+    private float VerticalInput;
+    private float SteeringAngle;
+    public WheelCollider Front1W, Front2W;
+    public WheelCollider Back1W, Back2W;
+    public Transform Front1T, Front2T;
+    public Transform Back1T, Back2T;
+    Vector3 m_EulerAngleVelocity;
+    public float MaxSteerAngle = 30;
+    public float Force = 20, tempForce;
+    [SerializeField] private float accel;
+    public Transform SteeringWheel;
+    public Rigidbody rb;
+
     private void Start()
     {
         tempForce = Force * 4;
@@ -39,11 +53,11 @@ public class BikeController : MonoBehaviour
             Front2W.motorTorque = VerticalInput * tempForce;
         }
         Vector3 vel = rb.velocity;
-        if (vel.magnitude > 55) 
+        if (vel.magnitude > 100) 
         {
-            Force = -40;
+            Force = -accel;
         } else {
-            Force = 40;
+            Force = accel;
         }
         
     }
@@ -78,16 +92,5 @@ public class BikeController : MonoBehaviour
         UpdateWheelPoses();
         FallCheck();
     }
-    private float HorizontalInput;
-    private float VerticalInput;
-    private float SteeringAngle;
-    public WheelCollider Front1W,Front2W;
-    public WheelCollider Back1W,Back2W;
-    public Transform Front1T,Front2T;
-    public Transform Back1T,Back2T;
-    Vector3 m_EulerAngleVelocity;
-    public float MaxSteerAngle = 30;
-    public float Force = 20, tempForce;
-    public Transform SteeringWheel;
-    public Rigidbody rb;
+    
 }
