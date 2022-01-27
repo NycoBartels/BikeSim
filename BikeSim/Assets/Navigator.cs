@@ -6,15 +6,16 @@ using UnityEngine.SceneManagement;
 public class Navigator : MonoBehaviour
 {
 
-
+    public string escape;
+    public string enter;
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape)) {
-            SceneManager.LoadScene("MenuV1");
+            SceneManager.LoadScene(escape);
         }
         if (Input.GetKeyDown(KeyCode.Return)) {
-            SceneManager.LoadScene("Graph");
+            SceneManager.LoadScene(enter);
         }
     }
 }
